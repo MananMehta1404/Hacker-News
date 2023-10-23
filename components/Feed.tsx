@@ -1,9 +1,12 @@
 "use client"
 
-import { fetchPosts } from '@/utils';
 import Image from 'next/image';
+import Link from 'next/link';
+
 import { useEffect, useState } from 'react'
+
 import { PostCard } from '.';
+import { fetchPosts } from '@/utils';
 import { PostProps } from '@/types';
 
 const Feed = () => {
@@ -38,6 +41,16 @@ const Feed = () => {
   // Function to handle search
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
+  }
+
+  // Function to handle pagination
+  const handleOnPrevClick = () => {
+    setpageNo(pageNo - 1);
+  }
+
+  // Function to handle pagination
+  const handleOnNextClick = () => {
+    setpageNo(pageNo + 1);
   }
 
   // Fetching posts when searchText or pageNo changes
@@ -91,6 +104,22 @@ const Feed = () => {
               </div>
             )}
             </h2>
+          </div>
+        )}
+
+      {/* Pagination */}
+      {allPosts.hits?.length > 0 && (
+          <div className='flex justify-center items-center flex-row mb-10'>
+            {pageNo != 0 && (
+              <button onClick={handleOnPrevClick} className='m-4 py-1 px-4 rounded-md bg-red-200'> 
+                <Link href='/'>Prev</Link> 
+              </button>
+            )}
+              {pageNo + 1} of {nPages}
+            {pageNo != nPages - 1 && (
+              <button onClick={handleOnNextClick} className='m-4 py-1 px-4 rounded-md bg-red-200'>
+                <Link href='/'>Next</Link> 
+              </button>)}
           </div>
         )}
     </section>
