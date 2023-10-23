@@ -3,6 +3,8 @@
 import { fetchPosts } from '@/utils';
 import Image from 'next/image';
 import { useEffect, useState } from 'react'
+import { PostCard } from '.';
+import { PostProps } from '@/types';
 
 const Feed = () => {
 
@@ -46,6 +48,7 @@ const Feed = () => {
 
   return (
     <section className='feed'>
+      {/* Search */}
       <form className='relative w-full flex-center'> 
         <input
           type='text'
@@ -57,6 +60,7 @@ const Feed = () => {
         />
       </form>
 
+      {/* Loading */}
       {loading && (
         <div className='mt-16 w-full flex-center'>
           <Image
@@ -68,6 +72,27 @@ const Feed = () => {
           />
         </div>
       )}
+
+      {/* Posts */}
+      {allPosts.hits?.length > 0 ? (
+        <section>
+          <div className='home__cars-wrapper mb-10'>
+            {allPosts.hits?.map((post: PostProps) => (
+              <PostCard post={post} key={post.objectID} />
+            ))}
+          </div>
+        </section>
+        ) : (
+          <div className='home__error-container'>
+            <h2 className='text-black text-xl font-bold'>
+            {!allPosts && (
+              <div className='mt-16 w-full flex-center'>
+                No posts found.
+              </div>
+            )}
+            </h2>
+          </div>
+        )}
     </section>
   )
 }
