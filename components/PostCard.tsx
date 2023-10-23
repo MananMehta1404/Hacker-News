@@ -7,14 +7,14 @@ interface PostCardProps {
 }
 
 const PostCard = ({ post }: PostCardProps) => {
-  const { author, num_comments, points, url, title } = post;
+  const { author, num_comments, points, url, title, objectID } = post;
 
   if(!title || !url) return null;
 
   return (
     <div className='relative flex flex-col flex-wrap w-full rounded-lg bg-white shadow-md mt-5 p-3'>
       <div className='m-2 font-bold'>
-        <Link href={`/post/${post.objectID}`}><span className="cursor-pointer absolute" />{title}</Link>
+        <Link href={`/post/${objectID}`}><span className="cursor-pointer absolute" />{title}</Link>
       </div>
 
       <div className='m-2 text-sm'>
