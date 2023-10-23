@@ -122,6 +122,18 @@ const Feed = () => {
               </button>)}
           </div>
         )}
+
+        {/* Scroll Up */}
+        <Link href={'/'} className='top'>
+          <Image
+            src='/scroll.png'
+            alt="Scroll Up"
+            width={50}
+            height={50}
+          >
+          </Image>
+        </Link>
+
     </section>
   )
 }

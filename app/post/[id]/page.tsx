@@ -96,6 +96,17 @@ const PostDetails = ({ params }: { params: { id: string } }) => {
             </> 
           )}
 
+          {/* Scroll Up */}
+          <Link href={`/post/${params.id}`} className='top'>
+            <Image
+              src='/scroll.png'
+              alt="Scroll Up"
+              width={50}
+              height={50}
+            >
+            </Image>
+          </Link>
+
         </div>
     )
 }

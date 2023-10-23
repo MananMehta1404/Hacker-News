@@ -168,3 +168,10 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+.top {
+  position: fixed;
+  bottom: 5rem;
+  right: 4rem;
+  z-index: 100;
+}
